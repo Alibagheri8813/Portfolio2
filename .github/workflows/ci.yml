@@ -40,4 +40,4 @@ jobs:
       - name: ESLint
         run: |
           npm ci || npm install
-          npx eslint portfolio/static/portfolio/js --ext .js
+          npx eslint -c eslint.config.mjs portfolio/static/portfolio/js --ext .js
