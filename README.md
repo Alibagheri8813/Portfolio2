@@ -2,7 +2,7 @@
 
 A modern, accessible, high-performance portfolio for a top-tier 17-year-old creator. Includes projects, blog, resume (PDF placeholder), testimonials, contact with AJAX + rate limiting, client-side search + server fallback, SEO, analytics placeholder, sitemaps, robots, and CI.
 
-## Quickstart
+## Quickstart (macOS/Linux)
 ```bash
 git clone <your-repo-url> premium-portfolio
 cd premium-portfolio
@@ -14,7 +14,37 @@ python manage.py seed_demo
 python manage.py runserver
 ```
 
-Docker:
+## Quickstart (Windows)
+
+PowerShell:
+```powershell
+py -3 -m venv .venv
+. .\.venv\Scripts\Activate.ps1
+python -m pip install -U pip
+pip install -r requirements.txt
+Copy-Item .env.example .env
+python manage.py migrate
+python manage.py seed_demo
+python manage.py runserver
+```
+If activation is blocked, run once:
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+```
+
+CMD:
+```bat
+py -3 -m venv .venv
+.\.venv\Scripts\activate.bat
+python -m pip install -U pip
+pip install -r requirements.txt
+copy .env.example .env
+python manage.py migrate
+python manage.py seed_demo
+python manage.py runserver
+```
+
+### Docker
 ```bash
 docker build -t premium-portfolio .
 docker run -p 8000:8000 --env-file .env premium-portfolio
