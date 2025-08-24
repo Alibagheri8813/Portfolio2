@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<article class="container">
+  <header>
+    <h1>{{ project.title }}</h1>
+    <p class="muted">{{ project.roles }} · {{ project.tools }}</p>
+  </header>
+  <img class="hero-img" loading="lazy" src="{% static project.cover_image %}" alt="{{ project.title }}" width="1280" height="720">
+  <div class="prose">
+    <h2>Challenge</h2>
+    <p>{{ project.excerpt }}</p>
+    <h2>Solution</h2>
+    <p>{{ project.content }}</p>
+    <h2>Gallery</h2>
+    <div class="gallery">
+      {% for img in project.images.all %}
+        <a href="{% static img.image_url %}" class="lightbox">
+          <img loading="lazy" src="{% static img.image_url %}" alt="{{ img.alt_text|default:project.title }}" width="400" height="225">
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if related %}
+  <section class="section">
+    <h2>Related</h2>
+    <div class="grid cards">
+      {% for p in related %}
+        <article class="card">
+          <a href="{{ p.get_absolute_url }}">
+            <img loading="lazy" src="{% static p.cover_image %}" alt="{{ p.title }}" width="640" height="360">
+            <div class="card-body"><h3>{{ p.title }}</h3></div>
+          </a>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</article>
+
+{% endblock %}

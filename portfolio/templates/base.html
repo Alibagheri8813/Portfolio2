@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  {% load static %}
+  {% load portfolio_extras %}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  {% include "includes/seo_meta.html" %}
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  {% include "includes/critical_css.html" %}
+  <link rel="stylesheet" href="{% static 'portfolio/css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'portfolio/css/utilities.css' %}">
+  <link rel="icon" href="{% static 'portfolio/icons/icons.svg' %}">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  {% include "includes/header.html" %}
+  <main id="content" tabindex="-1">
+    {% block content %}{% endblock %}
+  </main>
+  {% include "includes/footer.html" %}
+  {% include "includes/consent_banner.html" %}
+  {% include "includes/analytics.html" %}
+  <script defer src="{% static 'portfolio/js/main.js' %}"></script>
+</body>
+</html>

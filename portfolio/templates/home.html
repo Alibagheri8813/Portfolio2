@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% load portfolio_extras %}
+{% block content %}
+<section class="hero container">
+  <h1 class="headline">Crafting premium <span class="grad">software</span> and <span class="grad">design</span>.</h1>
+  <p class="sub">High-impact student creator specializing in UX, performance, and clean engineering.</p>
+  <div class="cta">
+    <a class="btn" href="{% url 'portfolio:projects' %}">View Projects</a>
+    <a class="btn secondary" href="{% url 'portfolio:contact' %}">Hire Me</a>
+  </div>
+</section>
+
+<section class="container section">
+  <h2>Featured Projects</h2>
+  <div class="grid cards" data-io-reveal>
+    {% for p in featured_projects %}
+    <article class="card" tabindex="0">
+      <a href="{{ p.get_absolute_url }}" class="card-link" aria-label="{{ p.title }}">
+        <img loading="lazy" src="{% static p.cover_image %}" alt="{{ p.title }}" width="640" height="360">
+        <div class="card-body">
+          <h3>{{ p.title }}</h3>
+          <p>{{ p.excerpt }}</p>
+          <p class="tags">
+            {% for t in p.tags.all %}<span>{{ t.name }}</span>{% endfor %}
+          </p>
+        </div>
+      </a>
+    </article>
+    {% empty %}
+    <p>No projects yet.</p>
+    {% endfor %}
+  </div>
+  <p><a href="{% url 'portfolio:projects' %}">See all projects →</a></p>
+</section>
+
+<section class="container section">
+  <h2>Latest Writing</h2>
+  <div class="grid cards" data-io-reveal>
+    {% for b in latest_posts %}
+    <article class="card">
+      <a href="{{ b.get_absolute_url }}">
+        <h3>{{ b.title }}</h3>
+        <p class="muted">{{ b.excerpt }}</p>
+        <p class="muted">{{ b.published_at|date:"M j, Y" }} · {{ b.body|reading_time }}</p>
+      </a>
+    </article>
+    {% empty %}
+    <p>No posts yet.</p>
+    {% endfor %}
+  </div>
+  <p><a href="{% url 'portfolio:blog' %}">See all posts →</a></p>
+</section>
+
+<section class="container section">
+  <h2>Testimonials</h2>
+  <ul class="testimonials" data-io-reveal>
+    {% for t in testimonials %}
+      <li>
+        <blockquote>
+          <p>“{{ t.content }}”</p>
+          <footer>— {{ t.author_name }}, <span class="muted">{{ t.author_role }}</span></footer>
+        </blockquote>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}
