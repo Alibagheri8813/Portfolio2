@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="container">
+  <h1>Resume</h1>
+  <p>Download my resume as PDF:</p>
+  <p><a class="btn" href="{% static 'portfolio/resume.pdf' %}" download>Download PDF</a></p>
+  <div class="prose">
+    <h2>Summary</h2>
+    <p>High-performing student focused on UX, performance, and full-stack product building.</p>
+    <h2>Experience</h2>
+    <ul>
+      <li>Freelance Developer/Designer (2023—Present): Built premium web apps and brand sites.</li>
+    </ul>
+    <h2>Skills</h2>
+    <ul>
+      <li>Django, Python, JS, UI/UX, A11y, SEO</li>
+    </ul>
+  </div>
+</section>
+{% endblock %}

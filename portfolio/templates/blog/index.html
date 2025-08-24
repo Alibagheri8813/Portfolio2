@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load portfolio_extras %}
+{% block content %}
+<section class="container">
+  <h1>Blog</h1>
+  <form class="filters" action="{% url 'portfolio:blog' %}" method="get" role="search">
+    <input id="blogSearch" type="search" name="q" value="{{ q }}" placeholder="Search posts…" aria-label="Search blog">
+  </form>
+
+  <div id="blogResults" class="grid cards" data-io-reveal>
+    {% for b in posts %}
+    <article class="card">
+      <a href="{{ b.get_absolute_url }}">
+        <h3>{{ b.title }}</h3>
+        <p class="muted">{{ b.excerpt }}</p>
+        <p class="muted">{{ b.published_at|date:"M j, Y" }} · {{ b.body|reading_time }}</p>
+      </a>
+    </article>
+    {% empty %}
+      <p>No posts found.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

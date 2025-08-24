@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load portfolio_extras %}
+{% block content %}
+<article class="container">
+  <header>
+    <h1>{{ post.title }}</h1>
+    <p class="muted">{{ post.published_at|date:"M j, Y" }} · {{ post.body|reading_time }}</p>
+  </header>
+  <div class="prose">
+    {{ post.body|linebreaks }}
+  </div>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ post.title|escapejs }}",
+    "datePublished": "{{ post.published_at|date:'c' }}",
+    "author": {"@type": "Person", "name": "High-Performing Creator"},
+    "mainEntityOfPage": {"@type":"WebPage","@id":"{{ request.build_absolute_uri }}"}
+  }
+  </script>
+</article>
+{% endblock %}

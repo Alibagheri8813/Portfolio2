@@ -1,0 +1,11 @@
+{
+  "name": "premium-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "eslint": "^9.9.0"
+  },
+  "scripts": {
+    "lint:js": "eslint portfolio/static/portfolio/js --ext .js"
+  }
+}

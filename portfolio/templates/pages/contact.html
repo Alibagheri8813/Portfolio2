@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="container">
+  <h1>Contact</h1>
+  <form id="contactForm" method="post" action="{% url 'portfolio:contact_submit' %}">
+    {% csrf_token %}
+    <div>
+      <label for="id_name">Name</label>
+      <input id="id_name" name="name" maxlength="120" required>
+    </div>
+    <div>
+      <label for="id_email">Email</label>
+      <input id="id_email" type="email" name="email" required>
+    </div>
+    <div>
+      <label for="id_message">Message</label>
+      <textarea id="id_message" name="message" rows="6" required></textarea>
+    </div>
+    <input type="hidden" name="recaptcha_token" id="recaptcha_token">
+    <button class="btn" type="submit">Send</button>
+    <p id="contactStatus" class="muted" role="status" aria-live="polite"></p>
+  </form>
+  {% if recaptcha_site_key %}
+    <script src="https://www.google.com/recaptcha/api.js?render={{ recaptcha_site_key }}" defer></script>
+  {% endif %}
+</section>
+{% endblock %}

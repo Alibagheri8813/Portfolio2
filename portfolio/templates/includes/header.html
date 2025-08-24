@@ -1,0 +1,17 @@
+<header role="banner">
+  <div class="container nav">
+    <a class="logo" href="{% url 'portfolio:home' %}" aria-label="Home">
+      <strong>HP Creator</strong>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-list">
+        <li><a href="{% url 'portfolio:projects' %}">Projects</a></li>
+        <li><a href="{% url 'portfolio:blog' %}">Blog</a></li>
+        <li><a href="{% url 'portfolio:about' %}">About</a></li>
+        <li><a href="{% url 'portfolio:resume' %}">Resume</a></li>
+        <li><a class="btn" href="{% url 'portfolio:contact' %}">Contact</a></li>
+      </ul>
+    </nav>
+    <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
+  </div>
+</header>

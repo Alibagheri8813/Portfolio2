@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="container">
+  <h1>Projects</h1>
+  <form class="filters" role="search">
+    <input id="projectSearch" type="search" placeholder="Search projects…" aria-label="Search projects">
+    <div class="tags">
+      <a class="{% if not active_tag %}active{% endif %}" href="{% url 'portfolio:projects' %}">All</a>
+      {% for t in tags %}
+        <a class="{% if active_tag and t == active_tag %}active{% endif %}" href="?tag={{ t.slug }}">{{ t.name }}</a>
+      {% endfor %}
+    </div>
+  </form>
+
+  <div id="projectGrid" class="grid cards" data-io-reveal>
+    {% for p in projects %}
+    <article class="card project-card" data-title="{{ p.title|lower }}">
+      <a href="{{ p.get_absolute_url }}" class="case-link" data-project-url="{{ p.get_absolute_url }}">
+        <img loading="lazy" src="{% static p.cover_image %}" alt="{{ p.title }}" width="640" height="360">
+        <div class="card-body">
+          <h3>{{ p.title }}</h3>
+          <p class="muted">{{ p.excerpt }}</p>
+        </div>
+      </a>
+    </article>
+    {% empty %}
+    <p>No projects found.</p>
+    {% endfor %}
+  </div>
+
+  <!-- Modal overlay (deep-link friendly) -->
+  <div id="caseOverlay" class="overlay" hidden aria-hidden="true" aria-label="Project details" role="dialog">
+    <button class="overlay-close" aria-label="Close">×</button>
+    <div class="overlay-content" id="overlayContent" tabindex="0" aria-live="polite"></div>
+  </div>
+</section>
+{% endblock %}
